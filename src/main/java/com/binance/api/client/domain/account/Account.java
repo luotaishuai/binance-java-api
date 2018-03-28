@@ -10,6 +10,16 @@ import java.util.List;
  */
 public class Account {
 
+  private String updateTime;
+
+  public String getUpdateTime() {
+    return updateTime;
+  }
+
+  public void setUpdateTime(String updateTime) {
+    this.updateTime = updateTime;
+  }
+
   /**
    * Maker commission.
    */
@@ -141,6 +151,7 @@ public class Account {
         .append("canWithdraw", canWithdraw)
         .append("canDeposit", canDeposit)
         .append("balances", balances)
+            .append("updateTime", updateTime)
         .toString();
   }
 }

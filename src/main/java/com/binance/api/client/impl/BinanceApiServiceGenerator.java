@@ -13,6 +13,8 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 
 /**
  * Generates a Binance API implementation based on @see {@link BinanceApiService}.
@@ -33,6 +35,7 @@ public class BinanceApiServiceGenerator {
     }
 
     public static <S> S createService(Class<S> serviceClass, String apiKey, String secret) {
+        httpClient.proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("192.168.1.115", 11111)));
         if (!StringUtils.isEmpty(apiKey) && !StringUtils.isEmpty(secret)) {
             AuthenticationInterceptor interceptor = new AuthenticationInterceptor(apiKey, secret);
             if (!httpClient.interceptors().contains(interceptor)) {
